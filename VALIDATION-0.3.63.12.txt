@@ -1,0 +1,6 @@
+VALIDATION 0.3.63.12
+
+Passed 11,993 shared dedicated-server Lua checks: Oak excludes Small Fish across level/roll ranges, crab capacity bounds, actual level30 and level99 pot catches, Poplar level gates and Manta catch, full inventory, movement cancellation, tool crafting, crab preparation, Cooking20/30 gates at stove and campfire, grade-A outputs, burn outputs and food/tooltip healing parity.
+Passed native LOVE startup and visually inspected all raw/cooked/burnt item frames, pole icons, empty and loaded Crab Pot and actual preparation menu. The six original uploaded PNGs are preserved byte-for-byte.
+Developer and alpha Lua syntax and shared-gameplay parity checked. ZIP CRC and developer server/editor and alpha Windows runtime inclusion checked. Previous bow/rare-wolf and advanced equipment regression suites run where listed in the release completion evidence.
+Limits: no live Render deployment, Linux hosting execution or human internet playthrough. Pot is an active shoreline fishing action; it does not persist as a placed trap. No exhaustive economy/balance test.

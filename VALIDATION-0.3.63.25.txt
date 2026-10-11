@@ -1,0 +1,5 @@
+VALIDATION0.3.63.25
+PASS13 camp respawn checks: no camp, closer own camp, closer town, distance tie, different player/character ownership, packed/destroyed camp, unsafe-camp fallback, safe nearby camp spot, actual player death with grave inventory transfer, and dedicated-server cave death choosing the closer camp without returning protected items.
+PASS8 existing cave grave/town/privacy/persistence checks.
+PASS Lua syntax for both distributions, shared gameplay module byte parity, unchanged uploaded artwork and ZIP CRC checks.
+Isolated headless shared-engine and dedicated-server QA; no production account/database or hosted deployment was changed. Prior0.3.63.24 validation and known limitations remain recorded in its preserved validation document. No native visual retest was needed for this destination-selection change.

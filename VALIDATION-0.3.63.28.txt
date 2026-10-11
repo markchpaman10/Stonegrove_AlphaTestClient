@@ -1,0 +1,2 @@
+VALIDATION 0.3.63.28
+PASS missing-cache initialization and restore, preserving saved entrances and protected cave death inventory. PASS two full Simulation restarts from shared_world.json, retaining gravestone HP, contents and cave links. PASS existing cave-death regression. PASS root/alpha Lua syntax, gameplay parity, retained PNG assets and ZIP CRC verification. Tests used isolated fixture data; no production account database or saved world was modified.

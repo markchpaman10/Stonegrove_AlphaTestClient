@@ -1,0 +1,6 @@
+STONEGROVE 0.3.63.32 - Pot progression, logout loss, batch breaking and Nagalian damage
+
+Shrimp unlock remains Fishing 6. Shrimp Pot capacity is Fishing level minus 5, clamped to 1-15: 1 at 6, 8 at 13, 15 at 20 and above. Catch checks take 60 seconds for Shrimp/Crab, twice their former interval; Lobster remains 30 seconds and capacity 10. Catch odds still grow with time and skill. Exact counts in pot tooltips/recovery messages require Fishing 50; loaded/empty sprites remain.
+Break transforms all matching Crab or Lobster in all inventory bags into their broken Parts sprites in place. Harvest remains 1-5 raw meat per broken item, with no ground drop.
+Placed pots are destroyed on character exit, account logout, expired disconnect, offline reload and server restart. Carried pots are retained. Cleanup also clears saved pot ledgers and prevents stale pot reconstruction. Empty releases catches as public ground items, which survive pot cleanup and remain available for other players to pick up.
+Nagalian damage previously used low-tier weapon damage even when its combat skills scaled to the map maximum. Its attack damage now has a base at least equal to its NPC level, with its Strength scaling retained. Applies to melee and bow/staff projectiles without altering player weapon stats or other enemies.

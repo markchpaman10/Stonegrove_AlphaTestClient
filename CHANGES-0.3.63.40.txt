@@ -1,0 +1,9 @@
+Stonegrove 0.3.63.40 — House editor NPC controls
+
+Ctrl + right-click toggles house interior/roof previews in the level editor.
+Normal right-click opens the NPC inspector for NPCs inside houses, with the roof visible or hidden.
+Shift + right-click retains erase. Placement, undo, save/reload and world export remain available.
+Updated house placement and preview hints explain the new shortcut.
+Gameplay right-click movement through house doors is unchanged.
+
+Validation: native LOVE editor checks NPC inspection with roof visible/hidden, Ctrl preview without deletion, Shift erase, undo, saved house variants, reload and world export. Exported-world server checks house collisions and navigation. All Lua files compile; server Python syntax passes. Shared game files, assets and world match the previous release apart from version strings. ZIP CRC and content checks pass.

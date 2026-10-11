@@ -1,0 +1,4 @@
+STONEGROVE 0.3.63.32 - Graded rune bank and bag shop prices
+
+Rune materials with identical grade, blessing status and other metadata now merge into bank stacks. Different grades or blessing states remain separate. Deposit All is atomic when the bank has no room. Graded non-stackable withdrawal now copies each requested item into inventory and subtracts only that amount from the bank; it no longer deletes the remainder. Failure due to insufficient inventory space leaves both stores unchanged. Existing saved bank stacks remain readable without conversion. Stateful Rune Bags and quivers retain contents.
+Bag shop tooltips now show buy/sell prices and shop stock alongside material, grade and Strength-based capacity. Previously the bag capacity tooltip replaced the shop tooltip and hid its prices. All previous content, Bag Keeper recovery, empty starter inventory, copper bank kit, Religion and bonfire fixes remain included. Update server and clients together.

@@ -1,0 +1,3 @@
+VALIDATION 0.3.63.33
+PASS 15 authored Bag Keeper checks: exact placement, appearance linking, grant and duplicate refusal, preserved bank, world-document round trip, event visibility, automatic fallback and cave isolation. PASS real native Level Editor rendering with Town / NPC Bag Keeper selected and placed labelled marker; screenshot inspected.
+PASS 35 Bag Keeper rules, 165 NPC/event/spawn/cave editor regressions, 810 graded rune bank and bag price checks, and 33 authenticated multiplayer Bag Keeper logout/restart/ownership/replay tests. Both source trees compile, shared modules match, old artwork retained byte-for-byte, ZIP CRC and package contents verified. No production saves or accounts modified.

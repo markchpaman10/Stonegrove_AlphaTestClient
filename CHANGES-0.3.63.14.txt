@@ -1,0 +1,8 @@
+STONEGROVE 0.3.63.14 — Escape menu Resume and Exit to Launcher
+
+Replaced the Escape menu's first Exit button with Resume. Resume closes the pause menu and continues the current game without saving, leaving the session or closing the application.
+Help, Unstuck and Options retain their existing actions. Added Exit to Launcher as a separate button anchored at the bottom of the menu. Drawing and hit testing share the same action list and row positions.
+Online Exit to Launcher closes the pause menu and invokes the existing character save-and-return path (also used by Ctrl+L). The launcher waits for pending character saves before displaying the account character slots. Presence/multiplayer stop through the existing launcher hooks; the launcher remains open.
+In the separately launched offline development game, the bottom button closes the game through the existing normal quit/save handler, returning control to the development launcher that remains open in its separate window.
+Pause/Options overlays remain visible while the shared-world connection is loading or disconnected. Their mouse actions run before the multiplayer busy/not-ready guard, so Resume and Exit to Launcher remain accessible.
+Developer and alpha releases updated together. Prior releases retained.

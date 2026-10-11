@@ -1,0 +1,9 @@
+Stonegrove 0.3.63.44 — Equipped utility tool
+
+One separate tool slot holds a knife, pickaxe, or axe. Right-click a tool and select Equip Tool, or drag it onto the tool slot/button. Copper Dagger also works as a utility knife. Swapping tools preserves their grade and metadata and leaves the combat weapon equipped.
+
+Separate bags and combined inventory show an inventory Tool button with the actual equipped tool and its tooltip. Left-click selects the tool for use on an item; right-click offers use or unequip. Compatible item menus also offer Use Equipped Tool. Gathering, skinning and recipes recognize equipped tools without a duplicate in the inventory. Knife processing and breaking crab/lobster retain their existing behavior.
+
+Equipment includes the tool slot. Saves, multiplayer profiles, death and grave recovery preserve the tool and its metadata. A full bag prevents unequipping without losing the tool; swapping uses the vacated inventory slot. Utility tool enchantments do not add combat weapon bonuses.
+
+Validation: 214 simulation checks; 60 native LOVE checks including save/reload, separate and combined inventory at three scales, swaps, full bags, processing and grave recovery; authenticated multiplayer tool actions and persistence; cooking tabs regression; 3,169 high-tier fish checks; existing bank, bags, crafting quality, rune, starter, Religion, bonfire, shellfish, seafood, gravestone, editor and shop regressions. All Lua compiles and server Python syntax checks pass. Existing artwork is unchanged. ZIP CRC and byte checks pass.
