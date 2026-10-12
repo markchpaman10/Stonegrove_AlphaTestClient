@@ -58,12 +58,12 @@ end
 local function capture(w)
  if w.isCave then w=w.overworld end
  if not w.regionId then return end
- R.states[w.regionId]={burialGraves=require("game.rune_inventory").copy(w.burialGraves or{}),gravestones=require("game.rune_inventory").copy(w.gravestones or{}),graveGround=require("game.rune_inventory").copy(w.groundItems or{}),fireState=require("game.fire_fuel").export(w),ore=require('game.prospecting').save(w),caves=require('game.caves').export(w),merchantItems=require('game.items').shopSnapshot(w),hideStations=require('game.hide_processing').export(w)}
+ R.states[w.regionId]={placedContainers=require("game.items").copy(w.placedContainers or{}),burialGraves=require("game.rune_inventory").copy(w.burialGraves or{}),gravestones=require("game.rune_inventory").copy(w.gravestones or{}),graveGround=require("game.rune_inventory").copy(w.groundItems or{}),fireState=require("game.fire_fuel").export(w),ore=require('game.prospecting').save(w),caves=require('game.caves').export(w),merchantItems=require('game.items').shopSnapshot(w),hideStations=require('game.hide_processing').export(w)}
 end
 function R.get(id,sprites)
  if R.cache[id]then return R.cache[id]end
  local record=assert(R.records[id],'Unknown world map');local w=require('game.world').new(sprites,record.data);w.regionId=id;R.cache[id]=w
- local state=R.states[id];if state then w.burialGraves=state.burialGraves or{};w.gravestones=state.gravestones or{};w.groundItems=state.graveGround or w.groundItems; require("game.fire_fuel").restore(w,state.fireState);require('game.hide_processing').restore(w,state.hideStations); require('game.items').restoreShops(w,state.merchantItems); require('game.prospecting').load(w,state.ore);if state.caves then require('game.caves').restore(w,state.caves)end end
+ local state=R.states[id];if state then w.placedContainers=state.placedContainers or{};w.burialGraves=state.burialGraves or{};w.gravestones=state.gravestones or{};w.groundItems=state.graveGround or w.groundItems; require("game.fire_fuel").restore(w,state.fireState);require('game.hide_processing').restore(w,state.hideStations); require('game.items').restoreShops(w,state.merchantItems); require('game.prospecting').load(w,state.ore);if state.caves then require('game.caves').restore(w,state.caves)end end
  return w
 end
 function R.preload(sprites,progress)

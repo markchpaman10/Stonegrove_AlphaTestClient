@@ -18,7 +18,7 @@ end
 function P.activate(session,slot,record)
  assert(type(session.id)=='number'and session.id>0 and session.id%1==0 and type(slot)=='number'and slot>=1 and slot<=3 and slot%1==0,'Invalid account or character slot')
  assert(not P.busy and not P.pending,'Save must finish before switching characters');P.active={id=session.id,slot=slot};P.session=session;P.revision=record.revision or 0;local dir='profiles/'..session.id..'/'..slot;love.filesystem.createDirectory(dir)
- if record.character then local d=P.unpack(J.decode(record.character.save));assert(type(d.player)=='table'and ({Human=true,Elf=true,Dwarf=true})[d.player.race],'Invalid character save');assert(love.filesystem.write('character_save.lua','return '..require('game.data_model').serialize(d)))else love.filesystem.remove(dir..'/character_save.lua')end
+ if record.character then local d=P.unpack(J.decode(record.character.save));assert(type(d.player)=='table'and ({Human=true,Elf=true,Dwarf=true})[d.player.race],'Invalid character save');assert(love.filesystem.write('character_save.lua','return '..require('EditorShared.model').serialize(d)))else love.filesystem.remove(dir..'/character_save.lua')end
 end
 function P.queue(data)
  if not P.active then return end

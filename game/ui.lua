@@ -736,4 +736,5 @@ require('game.craft_amount').install(UI)
 require('game.quality').installUI(UI)
 require('game.gravestone_ui').install(UI);require('game.bone_ui').install(UI);require('game.high_tier_fish').install(UI)
 require("game.tool_slot_ui").install(UI)
+require('game.lumber_ui').install(UI)
 return UI

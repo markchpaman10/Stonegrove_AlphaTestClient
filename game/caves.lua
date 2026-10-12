@@ -56,7 +56,7 @@ function C.ensure(w)
  C.replenish(w)
 end
 function C.cleared(w)
- if (next(w.gravestones or{})or next(w.burialGraves or{}))then if w.entry then w.entry.closing=nil end;return false end
+ if (next(w.placedContainers or{})or next(w.gravestones or{})or next(w.burialGraves or{}))then if w.entry then w.entry.closing=nil end;return false end
  if not w.isCave or w.entry.authored or w.entry.questSpawnKey or #(w.enemies or{})==0 then return false end
  for _,e in ipairs(w.enemies)do if not e.dead and(e.hp or 1)>0 then return false end end
  w.entry.closing=true;return true
@@ -69,7 +69,7 @@ function C.addQuest(w,x,y,key)
  local e={id=id,x=x,y=y,seed=math.random(1,1000000000),questSpawnKey=key,questTarget=true};C.clearResources(w,e);w.caveEntrances[#w.caveEntrances+1]=e;w._nextCaveId=id+1;return e
 end
 function C.entryCleared(e)
- if e.authored or e.questSpawnKey or(e.state and(next(e.state.gravestones or{})or next(e.state.burialGraves or{})))then return false end
+ if e.authored or e.questSpawnKey or(e.state and(next(e.state.placedContainers or{})or next(e.state.gravestones or{})or next(e.state.burialGraves or{})))then return false end
  if e.closing then return true end
  local enemies=e.state and e.state.enemies;if not enemies then return false end
  local count=0;for _,enemy in pairs(enemies)do count=count+1;if not enemy.dead and(enemy.hp or 1)>0 then return false end end;return count>0
@@ -83,7 +83,7 @@ function C.restore(w,entries)
 end
 function C.generate(over,entry)
  local w=setmetatable({},getmetatable(over));for k,v in pairs(over)do if type(v)~='table' then w[k]=v end end
- for _,key in ipairs({'nodes','swings','groundItems','enemies','sheep','farmAnimals','popups','enemyProjectiles','playerArrows','mercArrows','magicProjectiles','magicEffects','juiceParticles','slimePuddles','grass','campfires','houses','paths','notifications','tradeKeepers','healers','traders','standingTorches','villages','fenceRails','pastures','guards','bossShots','bossPools','goblinShots','oreSeams'})do w[key]={}end
+ for _,key in ipairs({'placedContainers','nodes','swings','groundItems','enemies','sheep','farmAnimals','popups','enemyProjectiles','playerArrows','mercArrows','magicProjectiles','magicEffects','juiceParticles','slimePuddles','grass','campfires','houses','paths','notifications','tradeKeepers','healers','traders','standingTorches','villages','fenceRails','pastures','guards','bossShots','bossPools','goblinShots','oreSeams'})do w[key]={}end
  w.sprites=over.sprites;w.mercs=over.mercs;w.isCave=true;w.overworld=over;w.entry=entry;w._nightState=false;w.caveChests={}
  for _,key in ipairs(require('game.villages').keys)do w[key]={x=-10000,y=-10000,jobs={},state='empty'}end
  local rng=love.math.newRandomGenerator(entry.seed);local areaLo,areaHi=require('game.level_zones').encounterRange(over.map,entry.x,entry.y);entry.levelMin=entry.levelMin or areaLo;entry.levelMax=entry.levelMax or areaHi
@@ -146,7 +146,7 @@ function C.generate(over,entry)
   for i,v in ipairs(state.nodes or {})do local n=w.nodes[i];if n then n.hp=v.hp;n.depleted=v.depleted;n.prospected=v.prospected;n.respawnTimer=1e9 end end
   for _,e in ipairs(w.enemies)do local v=(state.enemies or {})[e.caveId];if v then for k,value in pairs(v)do e[k]=value end;e.respawnTimer=1e9 end end
   for i,v in ipairs(state.chests or {})do if w.caveChests[i]then w.caveChests[i].items=v end end
-  w.groundItems=state.groundItems or {};w.burialGraves=state.burialGraves or{};w.gravestones=state.gravestones or{};w.graveSerial=state.graveSerial or 0
+  w.placedContainers=state.placedContainers or{};w.groundItems=state.groundItems or {};w.burialGraves=state.burialGraves or{};w.gravestones=state.gravestones or{};w.graveSerial=state.graveSerial or 0
   require('game.fire_fuel').restore(w,state.fireState)
  end
  return w
@@ -206,7 +206,7 @@ function C.export(w)
  for _,entry in ipairs(over.caveEntrances)do
   local a={id=entry.id,x=entry.x,y=entry.y,seed=entry.seed,state=entry.state,questSpawnKey=entry.questSpawnKey,questTarget=entry.questTarget,levelMin=entry.levelMin,levelMax=entry.levelMax,authored=entry.authored,closing=entry.closing};local instance=over.caveInstances[entry.id]
   if instance then
-   a.state={encounterVersion=2,bossKind=instance.bossKind or false,nodes={},enemies={},chests={},burialGraves=instance.burialGraves,gravestones=instance.gravestones,graveSerial=instance.graveSerial,groundItems=instance.groundItems,fireState=require('game.fire_fuel').export(instance)}
+   a.state={encounterVersion=2,bossKind=instance.bossKind or false,nodes={},enemies={},chests={},placedContainers=instance.placedContainers,burialGraves=instance.burialGraves,gravestones=instance.gravestones,graveSerial=instance.graveSerial,groundItems=instance.groundItems,fireState=require('game.fire_fuel').export(instance)}
    for i,n in ipairs(instance.nodes)do a.state.nodes[i]={hp=n.hp,depleted=n.depleted,prospected=n.prospected}end
    for i,e in ipairs(instance.enemies)do local v={};for _,k in ipairs({'hp','dead','skinned','huntingXpAwarded','expansionLoot','skinDrops','snakeLoot','randomLoot','lootPaid'})do v[k]=e[k]end;a.state.enemies[e.caveId or (100+i)]=v end
    for i,ch in ipairs(instance.caveChests)do a.state.chests[i]=ch.items end

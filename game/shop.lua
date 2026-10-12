@@ -43,7 +43,7 @@ function Shop:buyPrice(name)
 end
 function Shop:baseSellPrice(name) local d=require('game.custom_content').item(name);if d and tonumber(d.value)then return math.max(1,math.floor(tonumber(d.value)*.5))end;if name:sub(1,6)=="Burnt " then return 1 end;return rand100(self.period,name,2)*self.seed*self:tier(name) end
 function Shop:acceptsSale(name) if self.traderOnly then return true end;return (not self.tradeOnly) or self.accepted[name]==true end
-function Shop:sellPrice(name) if name=="Stone Gravel" then return self.traderOnly and 1 or 2 end;local base=self:baseSellPrice(name);if self.traderOnly then return math.max(1,math.floor(base*0.25)) end;if self.tradeOnly and self.accepted[name] then return base+10 end;return base end
+function Shop:sellPrice(name)if name=='Sawdust'then return 1 end; if name=="Stone Gravel" then return self.traderOnly and 1 or 2 end;local base=self:baseSellPrice(name);if self.traderOnly then return math.max(1,math.floor(base*0.25)) end;if self.tradeOnly and self.accepted[name] then return base+10 end;return base end
 function Shop:addSold(name,qty) if self.traderOnly then return true end;if self.tradeOnly then return self:acceptsSale(name) end;qty=qty or 1;for i=1,#self.slots do local v=self.slots[i];if v and v.name==name and not v.object then v.qty=v.qty+qty;return true end end;for i=1,math.max(25,#self.slots+1) do if not self.slots[i] then self.slots[i]={name=name,qty=qty};return true end end;return false end
 function Shop:buy(slot,inventory,qty)
  local it=self.slots[slot];if not it or(it.qty or 0)<=0 then return false,'empty'end

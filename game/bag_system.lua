@@ -20,7 +20,7 @@ function B.validate(bags,skills)
   assert(type(index)=='number'and index%1==0 and index>=1 and index<=B.limit(level),'Bag equipment slot locked')
   assert(type(bag)=='table'and B.defs[bag.name]and B.gradeBonus[bag.qualityGrade]~=nil,'Invalid bag or grade')
   assert(bag.size==B.capacity(bag,level),'Invalid bag capacity')
-  for slot,obj in pairs(bag.slots or{})do assert(type(slot)=='number'and slot%1==0 and slot>=1 and slot<=bag.size and type(obj)=='table','Invalid inventory slot');if B.defs[B.name(obj.name)]then assert(B.gradeBonus[B.grade(obj)]~=nil,'Invalid bag item grade')end end
+  for slot,obj in pairs(bag.slots or{})do assert(type(slot)=='number'and slot%1==0 and slot>=1 and slot<=bag.size and type(obj)=='table','Invalid inventory slot');require('game.lumber').validate(obj);if B.defs[B.name(obj.name)]then assert(B.gradeBonus[B.grade(obj)]~=nil,'Invalid bag item grade')end end
  end
  return true
 end

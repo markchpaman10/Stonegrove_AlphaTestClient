@@ -8,6 +8,7 @@ function I.copy(v,seen)
 end
 function I.stateful(obj)
  if not obj then return false end
+ if require('game.lumber').defs[obj.name]then return true end
  if obj.name=='Rune Bag' or require('game.advanced_gear').isQuiver(obj.name) then return true end
  for k in pairs(obj) do if k~='name' and k~='qty' then return true end end
  return false

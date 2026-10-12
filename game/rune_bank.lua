@@ -1,5 +1,6 @@
 local R={}
 local names={};for _,n in ipairs(require('game.rune_quality').names)do names[n]=true end
+for _,name in ipairs({'Pine Planks','Oak Planks','Poplar Planks','Copper Nails','Iron Nails','Steel Nails','Sawdust'})do names[name]=true end
 function R.install(I)
  local deposit=I.depositSlot
  function I:depositSlot(bi,slot)

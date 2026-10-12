@@ -1,0 +1,14 @@
+AUTO_UPDATE_GUIDE.txt
+CHANGED_FILES-0.3.63.51.txt
+CHANGES-0.3.63.51.txt
+client_package.json
+README.txt
+START_HERE.txt
+assets/nails.png
+game/client_updates.lua
+game/editor_names.lua
+game/launcher.lua
+game/logger.lua
+game/lumber.lua
+game/quests.lua
+game/rune_bank.lua

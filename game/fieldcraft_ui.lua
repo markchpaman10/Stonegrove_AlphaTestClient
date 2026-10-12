@@ -5,11 +5,12 @@ function M.command(u,cmd,done)
  if u.craftJob or u.magicCast or u.world.workJob then u.world:addPopup(u.player.x,u.player.y-24,"Finish your current action first");return false end
  local mp=require('game.multiplayer');local p=require('game.profile')
  if not mp.active and not p.active and not u.world.onlineShared then local a=actor(u);local ok,why
-  if cmd.op=='starterBag'then ok,why=require('game.bag_keeper').claim(u.world,a,cmd)
+  if cmd.op:match('^container')then ok,why=require('game.lumber').command(u.world,a,cmd)
+  elseif cmd.op=='starterBag'then ok,why=require('game.bag_keeper').claim(u.world,a,cmd)
   elseif cmd.op=='fishProcess'then ok,why=require('game.high_tier_fish').command(u.world,a,cmd)
   elseif cmd.op:match('^bone')then ok,why=require('game.bone_religion').command(u.world,a,cmd)
   elseif cmd.op=='admin'then local dest;cmd.serverAdmin=true;ok,why,dest=require('game.admin_rules').execute(u.world,a,cmd,u.sprites);if dest then require('game.regions').teleport(u,dest.region,dest.x,dest.y)end
-  elseif cmd.op=='craft'then ok,why=u.crafting:craft(cmd.station,cmd.index,u.inv,u.skills,u.logger,u.equipment.weapon)
+  elseif cmd.op=='craft'then ok,why=u.crafting:craft(cmd.station,cmd.index,u.inv,u.skills,u.logger,u.equipment.weapon,u.world,u.player)
   elseif cmd.op=='leaves'then local trial=R.clone(u.inv);ok=trial:removeItems('Bush Greens',1)and trial:add('Bush Leaves',1);why=ok and'Bush Leaves'or'Need Bush Greens and bag space';if ok then u.inv.bagSlots=trial.bagSlots;u.skills:addXP('Fieldcraft',4)end
   elseif cmd.op:match('^pot')or cmd.op:match('^shell')then ok,why=require('game.shellfish').command(u.world,a,cmd)
   else ok,why=F.command(u.world,a,cmd)end
@@ -139,7 +140,7 @@ function M.install(U)
    local def=require('game.enchanting').gems[g.name:match('^Cut (%a+)$')];qty=math.min(qty,def and def.maxDust or qty);return M.command(u,{op='enchant',qty=qty,gemBag=g.bag,gemSlot=g.slot,pageBag=p.bag,pageSlot=p.slot},function(ok)if ok then u.enchantGem=nil;u.enchantPage=nil end end)
   end;return enchant(u,qty)
  end
- local start=U.startCraft;U.startCraft=function(u,station,index)local r=u.crafting:getRecipes(station)[index];if r and require('game.multiplayer').active and(r.fieldcraft or r.bagRecipe or u.campStation and u.campStation.station==station)then return M.command(u,{op='craft',station=station,index=index},function(ok)if ok then u:craftBatchDone(station,index);if u.open[station]then u:startCraft(station,index)end else u.craftLimit=nil end end)end;return start(u,station,index)end
+ local start=U.startCraft;U.startCraft=function(u,station,index)local r=u.crafting:getRecipes(station)[index];if r and require('game.multiplayer').active and(r.lumber or r.fieldcraft or r.bagRecipe or u.campStation and u.campStation.station==station)then return M.command(u,{op='craft',station=station,index=index},function(ok)if ok then u:craftBatchDone(station,index);if u.open[station]then u:startCraft(station,index)end else u.craftLimit=nil end end)end;return start(u,station,index)end
  local update=U.updateMagic;U.updateMagic=function(u,dt)update(u,dt);M.update(u)end
  local drawSkills=U.drawSkills;U.drawSkills=function(u)if u.skillGuide=='Fieldcraft'then u.open.fieldcraft=true;u.skillGuide=nil;u:bringToFront('fieldcraft')end;return drawSkills(u)end
  -- Rendering participates in the existing window order and tooltip pass.

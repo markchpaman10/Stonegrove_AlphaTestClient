@@ -1,12 +1,12 @@
-Stonegrove automatic client updates - 0.3.63.49
+Stonegrove automatic client updates - 0.3.63.51
 
 Install this build manually once: extract its ZIP into a normal writable folder and launch it. Builds 0.3.63.48 and earlier do not contain the installer.
 
 Publishing updates:
 1. Open https://github.com/markchpaman10/Stonegrove_AlphaTestClient/releases/new
-2. Create and publish a normal release with a four-part tag, for example v0.3.63.49. Do not mark it draft or prerelease.
-3. Upload Stonegrove_0.3.63.49.zip from the Alpha_Testers folder and its matching Stonegrove_0.3.63.49.zip.sha256. This is the player client with its Windows runtime.
-4. For developer-client updates also upload Stonegrove_Developer_0.3.63.49.zip and its matching .zip.sha256 file. Do not upload the full developer ZIP under the Alpha filename: its contents are different.
+2. Create and publish a normal release with a four-part tag, for example v0.3.63.51. Do not mark it draft or prerelease.
+3. Upload Stonegrove_0.3.63.51.zip from the Alpha_Testers folder and its matching Stonegrove_0.3.63.51.zip.sha256. This is the player client with its Windows runtime.
+4. For developer-client updates also upload Stonegrove_Developer_0.3.63.51.zip and its matching .zip.sha256 file. Do not upload the full developer ZIP under the Alpha filename: its contents are different.
 5. Future releases use the next version in both their tag and ZIP names. The ZIP must contain main.lua and client_package.json directly at its root, not inside another folder. Use the supplied packages rather than GitHub's automatic source-code ZIP.
 
 The launcher checks before login. When a newer matching client is available, click Install latest client. It downloads in the background, verifies SHA-256 against the release asset digest (or the matching .zip.sha256 file), validates the package, closes Stonegrove, installs the files, then reopens it. If the repository has no published release, versioned ZIPs and matching checksum files at its root are also supported.

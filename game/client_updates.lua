@@ -1,4 +1,4 @@
-local U={version='0.3.63.49',state='idle',message='',serial=0}
+local U={version='0.3.63.51',state='idle',message='',serial=0}
 function U.versionParts(v)
  if type(v)~='string'then return end
  local a,b,c,d=v:match('^v?(%d+)%.(%d+)%.(%d+)%.(%d+)$')
@@ -52,7 +52,7 @@ function U.check(fallback)
   end
   if r.status~=200 or type(d)~='table'then U.state='failed';U.message='Client update check unavailable (HTTP '..tostring(r.status)..'). You can sign in or retry.';return end
   local newer=U.newer(d.tag_name,U.version)
-  if newer==nil or d.draft or d.prerelease then U.state='failed';U.message='Release must be published with a four-part version tag, e.g. v0.3.63.49. You can sign in or retry.';return end
+  if newer==nil or d.draft or d.prerelease then U.state='failed';U.message='Release must be published with a four-part version tag, e.g. v0.3.63.51. You can sign in or retry.';return end
   if not newer then U.state='current';U.message='Client '..U.version..' is up to date.';return end
   U.latest=d.tag_name;U.state='available';local base='https://github.com/'..U.repo..'/releases/'
   if type(d.html_url)=='string'and d.html_url:sub(1,#base)==base then U.url=d.html_url else U.url=base..'latest'end

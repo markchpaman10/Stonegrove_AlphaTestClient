@@ -1,7 +1,7 @@
 local W={names={'current','item_data','npc_data','monster_data','quest_data','event_data'}}
 local J=require('game.json');local P=require('game.profile')
 function W.export(root)
- local data={format='StonegroveWorldPackage',version=1,files={},assets={}};local model=require('game.data_model')
+ local data={format='StonegroveWorldPackage',version=1,files={},assets={}};local model=require('EditorShared.model')
  for _,name in ipairs(W.names)do data.files[name]=P.pack((assert(model.read(root..'/'..name..'.lua'))))end
  local items=P.unpack(data.files.item_data);for _,row in ipairs(items.entries or{})do local path=row.paperSprite or row.paperPath or row.spritePath;if path and path~=''then assert(path:match('^assets/imported/[%w_%-%.]+%.png$'),'Invalid imported sprite path');local f=assert(io.open(root..'/'..path,'rb'));local bytes=f:read('*a');f:close();data.assets[path]=love.data.encode('string','base64',bytes)end end
  return 'STONEGROVE_WORLD_1\n'..love.data.compress('string','zlib',J.encode(data))

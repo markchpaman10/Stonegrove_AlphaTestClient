@@ -1,5 +1,5 @@
 -- Durable recovery state only. Generated scenery and live actor graphs never persist.
-local W={version=2,lists={'groundItems','gravestones','burialGraves','campfires','pendingRuneDrops'}}
+local W={version=3,lists={'placedContainers','groundItems','gravestones','burialGraves','campfires','pendingRuneDrops'}}
 local function copy(v)return require('game.items').copy(v)end
 local function scalar(v)local out={};for k,x in pairs(v)do if type(x)=='string'or type(x)=='boolean'or(type(x)=='number'and x==x and math.abs(x)<math.huge)then out[k]=x end end;out.netId=nil;return out end
 function W.capture(w)

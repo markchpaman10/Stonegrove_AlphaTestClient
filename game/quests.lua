@@ -52,7 +52,7 @@ function Q.setup(w)
  w.questNPCs={};w.questTowns={};w.questDestinations={}
  for _,o in ipairs((w.map.authored or {}).objects or {})do
   if types[o.id] then w.questNPCs[#w.questNPCs+1]={id=o.id,key=((w.map.authored or {}).regionId and (w.map.authored.regionId..':') or '')..o.id..':'..o.x..':'..o.y,x=o.x,y=o.y,homeX=o.x,homeY=o.y,race='Human',name=types[o.id]}
-  elseif o.id=='townCenter' then local d={id=o.id,x=o.x,y=o.y,name=o.name or o.townName};w.questTowns[#w.questTowns+1]=d;w.questDestinations[#w.questDestinations+1]=d elseif o.id=='storyPOI' then w.questDestinations[#w.questDestinations+1]={id=o.id,x=o.x,y=o.y,name=o.name} end
+  elseif o.id=='townCenter' then local d={id=o.id,x=o.x,y=o.y,name=(require('game.editor_names').town(w.map.authored,o.x,o.y)or{}).name or o.name or o.townName};w.questTowns[#w.questTowns+1]=d;w.questDestinations[#w.questDestinations+1]=d elseif o.id=='storyPOI' then w.questDestinations[#w.questDestinations+1]={id=o.id,x=o.x,y=o.y,name=o.name} end
  end
  -- NPC Editor quest links. A single authored NPC can own an ordered quest line.
  local questById={};for _,cq in ipairs(QUEST_DATA.quests or{})do if cq.id then questById[cq.id]=cq end end

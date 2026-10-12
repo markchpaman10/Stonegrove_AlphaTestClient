@@ -1,5 +1,5 @@
 local V={}
-V.keys={'bankChest','shopkeeper','mercRecruiter','bankClerk','smelter','anvil','tanningVat','hideStretcher','spinningWheel','loom','metalLoom','alchemy','stove','magicAltar','religionAltar','socketTable','enchantAltar','inscription','tailoring'}
+V.keys={'copperSawmill','ironSawmill','steelSawmill','bankChest','shopkeeper','mercRecruiter','bankClerk','smelter','anvil','tanningVat','hideStretcher','spinningWheel','loom','metalLoom','alchemy','stove','magicAltar','religionAltar','socketTable','enchantAltar','inscription','tailoring'}
 function V.activate(world,v)
  if not v then return false end
  world.activeVillage=v

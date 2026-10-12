@@ -1,3 +1,86 @@
+Stonegrove 0.3.63.51 - Nail sprites and named town properties
+
+Nails: replaced black placeholders with the supplied copper/iron/steel sprite sheet. Added Steel Nails. All three recipes require Smithing 10 and a Hammer/anvil: 1 matching Copper/Iron/Steel Bar produces 5 nails. Existing universal craft grading remains active. Nails stack to 100 and same-grade bank deposits merge; copper/iron crate recipes are unchanged.
+
+Town Properties: choose Zones > Town Zone, then left-click an existing zone, or right-click its empty area. Edit Town Name and Town Level (1-10), then Apply and save the world. Enter applies; Escape cancels; Tab switches editable fields; Ctrl+A and paste are supported. Name/level changes participate in Undo. Size is derived from the drawn area: Small below 256x256 px of area, Medium below 512x512 px, otherwise Large. Center coordinates are calculated in pixels and tiles, with width/height displayed. Naming never resizes or moves a zone. Ctrl+drag can start a new zone within an existing one; Shift+right-click retains deletion. NPC editing and Ctrl+right-click house roof previews retain priority over property selection.
+
+Town data is stored directly alongside each town zone in current.lua and .sgworld exports: stable town ID, readable name, level and calculated size, plus the existing coordinates. Legacy zones get default labels/IDs when opened and these are saved on the next world save. Renaming retains the town ID and all placement/quest/event binding IDs. Existing worlds are not rewritten in the shipped package; open/edit/save your authored world to add its names.
+
+Readable names and IDs: authored objects, spawn zones and level zones receive stable placement IDs and default readable labels. New objects use their palette display name. Right-click ordinary objects for Object Properties to edit their placement name and see their ID/type/coordinates; NPCs retain their existing inspector and definition editor. Use Shift+right-click to erase ordinary objects. Technical type IDs, map IDs and existing coordinate-based quest references remain stable.
+
+Named towns now appear in the Level Editor title, town overlays, world map grid/info/export, shared Item/NPC/Monster editor map labels, Event Editor map/actor/item/NPC/event pickers, and Quest Editor giver/destination references. Pickers show names alongside IDs while storing their original values. Story dialogue node choices show dialogue snippets beside IDs. Reload sibling editors after saving town changes to refresh their shared world data. Escort destination names also resolve to the containing named town.
+
+Validation: all three level-10 nail recipes, five-per-bar output, grading/stack/bank behavior; ID uniqueness/stability, rename/boundary preservation and size derivation; actual Town Properties selection/edit/invalid-level rejection/undo/cancel/save/reload/world export; actual Event and shared content-editor pickers showing readable map/item names while retaining exact selected binding IDs; server import of exported town metadata and escort names/coordinates. Existing lumber storage checks (121), 60 native storage/movement/stamina/mill checks across both builds, skill-shop and cooking-menu regressions passed. Lua/Python syntax, unchanged unrelated artwork, ZIP CRC and packaged content verified.
+
+Install updated clients and server together so crafting recipe indices/requirements agree. The launcher client updater does not deploy server files. Preserve your AccountServer data and authored world. Publish a stable v0.3.63.51 GitHub release with the Alpha client ZIP and checksum; optionally publish the Developer ZIP/checksum separately.
+
+Previous notes:
+Stonegrove 0.3.63.50 - Woodworking storage, sawmills and wood materials
+
+New supplied artwork: pine/oak/poplar crate and barrel item icons, matching logs and planks, three sawmills and sawdust. Existing unrelated artwork remains unchanged. Copper and Iron Nails have the requested black square placeholders.
+
+Recipes:
+Pine Crate: 4 Pine Logs + 5 Copper Nails; Woodworking 10, Hammer.
+Oak Crate: 5 Oak Logs + 5 Iron Nails; Woodworking 20, Hammer.
+Poplar Crate: 5 Poplar Logs + 5 Iron Nails; Woodworking 30, Hammer.
+Pine Barrel: 4 Pine Logs + 2 Copper Bar; Smithing 10, Hammer/anvil.
+Oak Barrel: 4 Oak Logs + 2 Iron Bar; Smithing 20, Hammer/anvil.
+Poplar Barrel: 4 Poplar Logs + 2 Steel Bar; Smithing 30, Hammer/anvil.
+Copper Nails: 1 Copper Bar -> 5 nails, Smithing 1, Hammer/anvil.
+Iron Nails: 1 Iron Bar -> 5 nails, Smithing 10, Hammer/anvil.
+
+Storage capacities (D/C/B/A):
+Pine Crate 5/6/7/8; Pine Barrel 7/8/9/10.
+Oak Crate 8/9/10/11; Oak Barrel 10/11/12/13.
+Poplar Crate 11/12/13/14; Poplar Barrel 13/14/15/16.
+Crates and barrels use one inventory slot, remain separate physical items and do not equip as bags. Right-click Open Container or Place Container. Click a nearby placed container to open it. With its panel open, right-click an inventory item and choose Store in Container; click a storage slot to withdraw that stack. Retrieve container returns the entire container and its remaining contents to inventory. X closes the panel. Only its owner can open or retrieve placed storage online. Containers/bags/quivers/Rune Bags cannot be nested. Existing protected Fieldcraft deployment items (tents, pots and their Angled/Horizontal/Vertical Timber, Stump Pole and Bush Leaves) stay in main bags to retain their existing authoritative transfer rules. Ordinary logs, planks, ores, equipment, food and bone materials can be stored. Full destinations reject the transfer without consuming source items. Tool slots and normal bag equipment remain unchanged.
+
+Loaded carried containers apply 5% movement reduction and +15% sprint stamina cost each, capped at three loaded containers (15% movement reduction / +45% sprint cost). Empty, banked and placed containers add no burden. Contents retain grade, blessing, bone ownership and other metadata through banking, shop transfers, dropping, player graves and retrieval.
+
+Sawmills: 16 pixels wide and 32 pixels high (two tiles tall). Copper processes pine; Iron processes pine/oak; Steel processes all three. Woodworking 10 is required to use a mill; pine/oak/poplar sawing unlocks at 10/20/30. Place Copper Sawmill, Iron Sawmill or Steel Sawmill from the Level Editor Stations palette. Authored worlds keep their layout: existing maps require editor placement rather than rewriting their authored objects. Generated towns include mills. Placement, erase, undo, save/reload and .sgworld export/import work with the new machines; their lower footprint blocks movement.
+
+Sawing: 1 matching log per timed cycle, normally 1 plank. Higher Woodworking grants chances for a second and, from 70, third plank; maximum 3 per log. Pine/oak/poplar cycles take 2/2.5/3 seconds. Failure chance decreases with skill and higher-tier mills, with a 3% floor. Success yields 1 Sawdust; failures consume the log, yield 2-4 Sawdust and award quarter recipe XP. Ingredient consumption, output and byproduct insertion are atomic when inventory is full. Sawing uses the existing per-item batch/cancellation bar online and offline. Outputs receive the existing D-A craft grades. Planks stack to 15, nails to 100 and Sawdust to 20 in inventory; same-grade bank deposits merge while preserving grade. Sawdust sells for exactly 1 copper per item.
+
+Server-owned placement and persistence: placed storage is separate from loose ground items, so it does not disappear after the five-minute ground-loot timer. Shared world schema 3 saves only its scalar placement/owner fields and physical item contents alongside the existing recovery data; generated camps/caves/actors remain disposable. Schema 2 saves migrate automatically. Older servers refuse schema 3 rather than silently dropping the new contents. Cave recovery relocates placed storage outside an old cave entrance after server restart. Offline region/cave saves retain placement. Container mutations use the existing authoritative camp transaction/revision/replay path, including inventory/world rollback on database failures, immediate world checkpoints after commit and snapshot deltas. Deleting a character scatters their placed containers as normal timed ground loot rather than leaving inaccessible ownership.
+
+Validation: 121 recipe/quality/capacity/stack/bank/metadata/failure/persistence checks; 60 actual LOVE checks across both builds for sprites, storage UI, placing/opening/retrieving, mill gates and burden; 39 authenticated HTTP checks including ownership, replay, injected database-failure rollback, restart, metadata, timed sawing and early-completion rejection. Native editor mill placement/erase/undo/save/reload/export and server import/collision passed. Regression checks cover 3,137 native skill-shop/double-click/transaction UI cases, 353 cooking-menu cases, updater metadata/handoff and launcher login gating, snapshot reuse/field reconstruction, recovery obstruction clearing, and regenerated cave/world recovery. Lua/Python syntax, unchanged unrelated artwork and ZIP CRC/content verified.
+
+Install the updated server as well as clients for this feature. Preserve the existing AccountServer directory, accounts database and authored world. Automatic client installation still excludes server deployment. For launcher updates publish a stable v0.3.63.50 GitHub release with the supplied Alpha ZIP and matching .sha256; optionally publish the Developer ZIP and its checksum as the second distribution.
+
+Previous notes:
+Stonegrove 0.3.63.50 - Woodworking storage, sawmills and wood materials
+
+New supplied artwork: pine/oak/poplar crate and barrel item icons, matching logs and planks, three sawmills and sawdust. Existing unrelated artwork remains unchanged. Copper and Iron Nails have the requested black square placeholders.
+
+Recipes:
+Pine Crate: 4 Pine Logs + 5 Copper Nails; Woodworking 10, Hammer.
+Oak Crate: 5 Oak Logs + 5 Iron Nails; Woodworking 20, Hammer.
+Poplar Crate: 5 Poplar Logs + 5 Iron Nails; Woodworking 30, Hammer.
+Pine Barrel: 4 Pine Logs + 2 Copper Bar; Smithing 10, Hammer/anvil.
+Oak Barrel: 4 Oak Logs + 2 Iron Bar; Smithing 20, Hammer/anvil.
+Poplar Barrel: 4 Poplar Logs + 2 Steel Bar; Smithing 30, Hammer/anvil.
+Copper Nails: 1 Copper Bar -> 5 nails, Smithing 1, Hammer/anvil.
+Iron Nails: 1 Iron Bar -> 5 nails, Smithing 10, Hammer/anvil.
+
+Storage capacities (D/C/B/A):
+Pine Crate 5/6/7/8; Pine Barrel 7/8/9/10.
+Oak Crate 8/9/10/11; Oak Barrel 10/11/12/13.
+Poplar Crate 11/12/13/14; Poplar Barrel 13/14/15/16.
+Crates and barrels use one inventory slot, remain separate physical items and do not equip as bags. Right-click Open Container or Place Container. Click a nearby placed container to open it. With its panel open, right-click an inventory item and choose Store in Container; click a storage slot to withdraw that stack. Retrieve container returns the entire container and its remaining contents to inventory. X closes the panel. Only its owner can open or retrieve placed storage online. Containers/bags/quivers/Rune Bags cannot be nested. Full destinations reject the transfer without consuming source items. Tool slots and normal bag equipment remain unchanged.
+
+Loaded carried containers apply 5% movement reduction and +15% sprint stamina cost each, capped at three loaded containers (15% movement reduction / +45% sprint cost). Empty, banked and placed containers add no burden. Contents retain grade, blessing, bone ownership and other metadata through banking, shop transfers, dropping, player graves and retrieval.
+
+Sawmills: 16 pixels wide and 32 pixels high (two tiles tall). Copper processes pine; Iron processes pine/oak; Steel processes all three. Woodworking 10 is required to use a mill; pine/oak/poplar sawing unlocks at 10/20/30. Place Copper Sawmill, Iron Sawmill or Steel Sawmill from the Level Editor Stations palette. Authored worlds keep their layout: existing maps require editor placement rather than rewriting their authored objects. Generated towns include mills. Placement, erase, undo, save/reload and .sgworld export/import work with the new machines; their lower footprint blocks movement.
+
+Sawing: 1 matching log per timed cycle, normally 1 plank. Higher Woodworking grants chances for a second and, from 70, third plank; maximum 3 per log. Pine/oak/poplar cycles take 2/2.5/3 seconds. Failure chance decreases with skill and higher-tier mills, with a 3% floor. Success yields 1 Sawdust; failures consume the log, yield 2-4 Sawdust and award quarter recipe XP. Ingredient consumption, output and byproduct insertion are atomic when inventory is full. Sawing uses the existing per-item batch/cancellation bar online and offline. Outputs receive the existing D-A craft grades. Planks stack to 15, nails to 100 and Sawdust to 20 in inventory; same-grade bank deposits merge while preserving grade. Sawdust sells for exactly 1 copper per item.
+
+Server-owned placement and persistence: placed storage is separate from loose ground items, so it does not disappear after the five-minute ground-loot timer. Shared world schema 3 saves only its scalar placement/owner fields and physical item contents alongside the existing recovery data; generated camps/caves/actors remain disposable. Schema 2 saves migrate automatically. Older servers refuse schema 3 rather than silently dropping the new contents. Cave recovery relocates placed storage outside an old cave entrance after server restart. Offline region/cave saves retain placement. Container mutations use the existing authoritative camp transaction/revision/replay path, including inventory/world rollback on database failures, immediate world checkpoints after commit and snapshot deltas. Deleting a character scatters their placed containers as normal timed ground loot rather than leaving inaccessible ownership.
+
+Validation: 120 recipe/quality/capacity/stack/bank/metadata/failure/persistence checks; 60 actual LOVE checks across both builds for sprites, storage UI, placing/opening/retrieving, mill gates and burden; 39 authenticated HTTP checks including ownership, replay, injected database-failure rollback, restart, metadata, timed sawing and early-completion rejection. Native editor mill placement/erase/undo/save/reload/export and server import/collision passed. Regression checks cover 3,137 native skill-shop/double-click/transaction UI cases, 353 cooking-menu cases, updater metadata/handoff and launcher login gating, snapshot reuse/field reconstruction, recovery obstruction clearing, and regenerated cave/world recovery. Lua/Python syntax, unchanged unrelated artwork and ZIP CRC/content verified.
+
+Install the updated server as well as clients for this feature. Preserve the existing AccountServer directory, accounts database and authored world. Automatic client installation still excludes server deployment. For launcher updates publish a stable v0.3.63.50 GitHub release with the supplied Alpha ZIP and matching .sha256; optionally publish the Developer ZIP and its checksum as the second distribution.
+
+Previous notes:
 Stonegrove 0.3.63.49 - Launcher automatic client installation
 
 Added an Install latest client button that downloads and verifies the correct Alpha/developer package, stages it outside the installed client, waits for the running client to exit, replaces files with backups and reopens Stonegrove. Failure during replacement restores the previous files. Installation blocks launcher actions until handoff; download/validation failures leave the current client unchanged and allow retry. Previous helper errors are visible on subsequent startup.

@@ -21,7 +21,7 @@ function N.refresh(w,cx,cy,radius)
   else rect(x,y-4,ww,hh,6) end
  end
  for _,v in ipairs(w.villages or {}) do
-  for _,name in ipairs({'bankChest','smelter','anvil','tanningVat','hideStretcher','spinningWheel','loom','metalLoom','alchemy','tailoring'}) do local st=v[name];if st then rect(st.x-8,st.y-5,16,16,5) end end
+  for _,name in ipairs({'copperSawmill','ironSawmill','steelSawmill','bankChest','smelter','anvil','tanningVat','hideStretcher','spinningWheel','loom','metalLoom','alchemy','tailoring'}) do local st=v[name];if st then rect(st.x-8,st.y-5,16,16,5) end end
  end
  for _,list in ipairs({w.tradeKeepers or {},w.traders or {},w.healers or {}}) do for _,npc in ipairs(list) do rect(npc.x-7,npc.y-7,14,14,5) end end
  for _,n in ipairs(w.nodes or {}) do if near(n.x,n.y) and not n.depleted and (n.kind=='tree' or (n.kind=='oak' or n.kind=='poplar') or n.kind=='copper' or n.kind=='tin' or n.kind=='iron' or n.kind=='coal') then rect(n.x-6,n.y-2,12,12,9) end end

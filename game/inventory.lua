@@ -248,4 +248,5 @@ function Inventory:migrateBags(level)
  end end
  for _,obj in ipairs(extras)do if not self:addItemObject(obj)then local slot=1;while self.bank[slot]do slot=slot+1 end;self.bank[slot]=obj;self.bankSize=math.max(self.bankSize or 25,slot)end end
 end
+require('game.lumber').installInventory(Inventory)
 return Inventory

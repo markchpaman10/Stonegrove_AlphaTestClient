@@ -396,6 +396,7 @@ function S.load()
  require('game.dark_content').load(s)
 for name,info in pairs(s.itemInfo)do if name:match('^Steel ')and(info.type=='Weapon'or info.type=='Tool'or info.type=='Offhand')then s.itemImages[name]=s.unfinishedMetalIcon;s.itemQuads[name]=nil end end
 require('game.new_fishing_content').load(s);require('game.bag_system').load(s);require('game.quality').load(s);require('game.seafood_content').load(s);require('game.food').apply(s);require('game.bone_religion').load(s);require('game.high_tier_fish').load(s)
+require('game.lumber').load(s)
 return s
 end
 return S

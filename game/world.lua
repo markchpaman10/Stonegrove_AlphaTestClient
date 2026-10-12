@@ -48,7 +48,7 @@ function World.new(sprites,authored)
  math.randomseed(((authored and authored.seed or os.time())+(SG_SERVER_GENERATION or 0))%2147483647)
  local map=Map.new(authored);if map.authored and map.authored.levelZones then local ok,why=require('game.level_zones').validate(map.authored);assert(ok,why)end;local firstSite=Zones.villageSites(map)[1];local cx,cy=firstSite.x,firstSite.y
  local townTypes={'large','medium','small'};local townType=townTypes[math.random(1,#townTypes)]
- local self=setmetatable({sprites=sprites,map=map,nodes={},swings={},gather=nil,groundItems={},bankChest={x=cx,y=cy+24},shopkeeper={x=cx,y=cy},mercRecruiter={x=cx+30,y=cy},bankClerk={x=cx-30,y=cy},mercs={},smelter={x=cx-150,y=cy-96},anvil={x=cx,y=cy-126},tanningVat={x=cx+150,y=cy-96,jobs={}},hideStretcher={x=cx+184,y=cy+10,state="empty",timer=0},spinningWheel={x=cx+120,y=cy+132},alchemy={x=cx-120,y=cy+132},stove={x=cx-184,y=cy+10},magicAltar={x=cx+250,y=cy-150},religionAltar={x=cx+250,y=cy-115},socketTable={x=cx+285,y=cy-80},enchantAltar={x=cx+335,y=cy-80},inscription={x=cx+335,y=cy+10},metalLoom={x=cx+405,y=cy+90},loom={x=cx+365,y=cy+90},tailoring={x=cx+335,y=cy+90},enemies={},sheep={},farmAnimals={},popups={},combatTarget=nil,targetedEnemy=nil,enemyProjectiles={},playerArrows={},mercArrows={},magicProjectiles={},magicEffects={},juiceParticles={},slimePuddles={},grass={},campfires={},fishing=nil,houses={},paths={},notifications={},tradeKeepers={},healers={},traders={},standingTorches={},townType=townType},World)
+ local self=setmetatable({sprites=sprites,map=map,placedContainers={},nodes={},swings={},gather=nil,groundItems={},copperSawmill={x=cx+450,y=cy+90},ironSawmill={x=cx+480,y=cy+90},steelSawmill={x=cx+510,y=cy+90},bankChest={x=cx,y=cy+24},shopkeeper={x=cx,y=cy},mercRecruiter={x=cx+30,y=cy},bankClerk={x=cx-30,y=cy},mercs={},smelter={x=cx-150,y=cy-96},anvil={x=cx,y=cy-126},tanningVat={x=cx+150,y=cy-96,jobs={}},hideStretcher={x=cx+184,y=cy+10,state="empty",timer=0},spinningWheel={x=cx+120,y=cy+132},alchemy={x=cx-120,y=cy+132},stove={x=cx-184,y=cy+10},magicAltar={x=cx+250,y=cy-150},religionAltar={x=cx+250,y=cy-115},socketTable={x=cx+285,y=cy-80},enchantAltar={x=cx+335,y=cy-80},inscription={x=cx+335,y=cy+10},metalLoom={x=cx+405,y=cy+90},loom={x=cx+365,y=cy+90},tailoring={x=cx+335,y=cy+90},enemies={},sheep={},farmAnimals={},popups={},combatTarget=nil,targetedEnemy=nil,enemyProjectiles={},playerArrows={},mercArrows={},magicProjectiles={},magicEffects={},juiceParticles={},slimePuddles={},grass={},campfires={},fishing=nil,houses={},paths={},notifications={},tradeKeepers={},healers={},traders={},standingTorches={},townType=townType},World)
  -- Village pass: one home/workshop for every permanent crafting station.
  -- The crafting table sits outside its matching house, facing the market center.
  self.houses={
@@ -1105,7 +1105,5 @@ end
 require("game.world_jobs").install(World)
 require("game.fieldcraft").install(World)
 require("game.survival_foraging").install(World)
+require('game.lumber').installWorld(World)
 return World
-
-
-

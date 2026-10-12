@@ -8,7 +8,7 @@ local function personal()
   headDir=player.headDir,bodyDir=player.bodyDir,frame=player.frame,moving=player.moving,equipped=player.equipped,burst=player.burst,warriorYell=player.warriorYell,poisonImmuneTimer=player.poisonImmuneTimer,slimeCoated=player.slimeCoated,toolSwing=player.toolSwing,activity=player.activity,activityTimer=player.activityTimer},
   gatherTarget=ui.world.gather and ui.world.gather.node and ui.world.gather.node.netId,quests=player.quests,bags=inventory.bagSlots,activeBag=inventory.activeBag,skills=skills.data,equipment=ui.equipment,equipmentItems=ui.equipmentItems,equipmentSockets=ui.equipmentSockets,spellPages=ui.spellPages})
 end
-local collections={'nodes','enemies','groundItems','sheep','campfires','playerArrows','mercArrows','magicProjectiles','enemyProjectiles','magicEffects','slimePuddles','bossShots','bossPools','goblinShots','goblinArrows','guards','farmAnimals','popups','juiceParticles','shellfishPots','shellfishParts','gravestones','burialGraves'}
+local collections={'placedContainers','nodes','enemies','groundItems','sheep','campfires','playerArrows','mercArrows','magicProjectiles','enemyProjectiles','magicEffects','slimePuddles','bossShots','bossPools','goblinShots','goblinArrows','guards','farmAnimals','popups','juiceParticles','shellfishPots','shellfishParts','gravestones','burialGraves'}
 local function apply(w,d,initial)
  local known=initial and require('game.prospecting').save(w)
  local structureChanged=initial
