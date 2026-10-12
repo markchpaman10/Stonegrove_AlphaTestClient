@@ -1,0 +1,7 @@
+Stonegrove 0.3.63.54
+
+Fixed character loading in the standalone tester client. Profile activation now uses the runtime save serializer, instead of requiring the excluded EditorShared module. Character data and account slots are preserved.
+
+Extract the full tester ZIP into a new folder and run its launcher. Existing account characters remain on the server. No player-data reset is needed. The client-only hotfix can also be extracted over a 0.3.63.52 or 0.3.63.53 installation with the game closed; its displayed version remains unchanged.
+
+Validated both distributions: launcher character selection for Human, Elf and Dwarf; empty-slot creation, synchronization and subsequent loading; sparse bags, rune grades, bone provenance, tools and container contents. All Lua files compile; archive integrity and contents verified. Server GitHub-only world loading from 0.3.63.53 is retained.

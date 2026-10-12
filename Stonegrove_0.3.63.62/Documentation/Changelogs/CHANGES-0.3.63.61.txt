@@ -1,0 +1,9 @@
+Stonegrove 0.3.63.61
+
+Fixed stationary single-player main-menu camera routes on maps with no town markers or only one town. Such maps now get a local landscape sweep; maps with multiple towns retain the town-to-town tour. The camera starts moving after a brief initial pause.
+
+Mountain ramps now exclude procedural resource and enemy placement across their full footprint, with clearance for trees and enemies. The protection applies to normal generation and resource/enemy zones, across all three mountain layers. Walking on ramps remains enabled; spawning on mountain tops remains enabled.
+
+Verified the actual menu update callback under native LOVE for empty-town and single-town maps. An isolated server generated resource and enemy zones spanning a ramp: no nodes or enemies were on the ramp or clearance margin, enemies spawned nearby, and ramp walking remained enabled. Mountain-top spawning and linked cave roundtrip were checked as regressions. Lua compilation, character loading and ZIP integrity were checked.
+
+Includes the earlier mountain styles, three layers, zoomable cave destination picker, held-click painting and organized documentation. Extract into a new folder for the clean layout.

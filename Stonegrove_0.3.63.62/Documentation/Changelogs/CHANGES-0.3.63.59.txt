@@ -1,0 +1,6 @@
+Stonegrove 0.3.63.59
+
+Hold left-click and drag in the Brush tool to paint continuous tall fences, mountains and mountain ramps. Hold right-click and drag to erase; use Shift + right-click over inspectors. Movement between mouse events is filled in so fast dragging does not skip tiles. The whole stroke is one Undo action.
+Ramps still require a straight three-tile-wide lower mountain edge; R mirrors them. Terrain, ordinary fences and paths retain held-click painting.
+Includes previous corner/ramp, character-loading and camera fixes. Documentation remains organized.
+Validated actual native editor mouse press/move/release for long fence and ramp strokes, intermediate cells and single-stroke undo; map reload/export, ramp passage, Lua compilation, character loading and archive integrity.

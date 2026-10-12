@@ -1,0 +1,11 @@
+Stonegrove 0.3.63.45 — Startup client update check
+
+Both clients automatically check https://github.com/markchpaman10/Stonegrove_AlphaTestClient before login. The check uses the latest published GitHub Release with a four-part version tag (v0.3.63.45), or, when there is no Release, the highest Stonegrove_X.X.X.X.zip in the repository root. Versions compare numerically, including 99 to 100. Draft and prerelease releases are not accepted as stable releases.
+
+Sign-in and account creation wait for the check. A newer version displays a Download latest client button and prevents online login with the outdated client. The button opens the matching ZIP download, or the release/repository page when a direct ZIP is unavailable. Download and extract the client and open the new version. This is a startup update notice/download flow; it does not automatically overwrite or restart the running client.
+
+A failed request, unavailable repository or 12-second timeout displays an explicit notice and permits login. Check client updates retries. Checks do not send account credentials to GitHub. The existing world-update link remains independent. Saves, credentials and character progress remain in their existing LOVE save directory.
+
+Publishing: upload the alpha client ZIP into the repository root using its exact versioned filename, e.g. Stonegrove_0.3.63.45.zip. Alternatively publish a stable Release tagged v0.3.63.45 with that client ZIP asset. Each client embeds its own version. To change the source, edit game/client_update_source.lua before shipping or place client_update_config.json containing {"repository":"https://github.com/owner/repository"} in the LOVE save folder.
+
+Validation: 63 update checks cover numeric comparisons, URL/source validation, Releases, root ZIP fallback, stale callbacks, timeouts and failure paths. Native LOVE tests pass for both real launchers: startup gating, download button and login/register fallback (14 checks each). Public repository/API verified: main branch, no Release and Stonegrove_0.3.63.43.zip. The native WinHTTP live request could not connect in this environment; its failure notice and continued login behavior were verified, while Python HTTPS successfully read the repository. All Lua compiles, server Python syntax, unchanged artwork and ZIP CRC/content checks pass.

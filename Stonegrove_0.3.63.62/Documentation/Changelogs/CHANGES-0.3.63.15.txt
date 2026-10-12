@@ -1,0 +1,6 @@
+STONEGROVE 0.3.63.15 - Melee crash and building-material sales
+
+Fixed World:attackEnemy using an undefined projectile p in the melee-hit branch. Threat now uses the attacking player. This fixes the chicken attack crash and the same crash for all other melee targets in offline and authoritative shared-world combat. The projectile branch retains its actual projectile owner.
+Angled Timber, Horizontal Timber, Vertical Timber, Stump Pole and Bush Leaves can be sold to accepting merchants. Tents remain protected and unsellable. Online building-material purchases, Sell and Sell All use the authoritative camp transaction endpoint: exact currency, protected inventory, character revisions, durable saves and replay idempotence. Merchant distance and accepted items are checked server-side; transaction rollback restores inventory, coins and merchant stock. Returned merchant stock updates the client.
+Broad regression run covers recipes, gear, fishing/cooking, skinning, woodcutting, progression, camps, editors, map zones, caves, Nagalians, Queens, player healing and character deletion. Updated older regression fixtures for the current tent sprite assignments, editor-only Queen placement/selected levels and an explicit ore respawn fixture on maps without starter ore.
+Developer/server and alpha builds updated together. Previous releases and uploaded art preserved.

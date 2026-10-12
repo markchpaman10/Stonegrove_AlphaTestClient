@@ -1,0 +1,95 @@
+STONEGROVE 0.3.63.15 BUG CHECK REPORT
+
+Fixed: undefined projectile variable in all landed melee attacks; building-material merchant rejection and online protected-item persistence.
+
+24 regression suites PASS, plus native Windows alpha client checks.
+Tests use isolated local QA databases, never production accounts or saves.
+
+PASS test_advanced_gear.py (8.12 seconds)
+PASS 397 new recipe/equipment/art/poison/bow/atomic-inventory checks
+
+PASS test_advanced_http.py (31.26 seconds)
+PASS authenticated local HTTP all 16 advanced recipes: exact materials, correct skill XP, loom proximity rejection, timed casts and replay idempotence
+PASS authenticated local HTTP Tailoring: timed cast rejection, replay idempotence, dye/robe material consumption, server loom proximity, weaving/dyeing and durable inventory/XP; Linen Bag level49 rejection and level50 exact mixed-colour materials
+
+PASS test_bow_wolf.py (8.52 seconds)
+PASS 26 bow/arrow Fletching, equipment and rare wolf-head atomic skinning checks
+
+PASS test_bugcheck.py (19.72 seconds)
+PASS sale rollback, distant merchant rejection, all five building materials and protected tents
+PASS melee chicken/rat/goblin/nagalian; authenticated building-material Sell, Sell All and buyback, invalid merchant/tent rejection, replay, durable inventory and ordinary save
+
+PASS test_camp_http.py (29.16 seconds)
+Unhandled POST /v1/camp server error: IntegrityError: QA forced character write failure
+PASS authenticated HTTP: admin role enforcement, level/item grants, safe persisted town teleport, two accounts, camp replication, owner-only storage, exact packing guard, replay idempotence, stale replay rejection, injected database-failure rollback, timed construction, real bank transfers, cooperative station crafting, logout Tent loss, durable recovery, paid-layout redeployment, reconnect ownership and expired-session cleanup
+
+PASS test_character_delete_http.py (13.32 seconds)
+PASS authenticated character delete, cancel guards, ownership, revision/name validation, active-session refusal, camp/cache cleanup, slot reuse, stale-save prevention, concurrent save/delete and restart durability
+
+PASS test_editor_flow.py (8.68 seconds)
+165 NPC, event priority, spawn control and cave lifecycle checks passed
+
+PASS test_fieldcraft.py (8.6 seconds)
+44 shared Lua rule checks passed
+PASS: durable offline logout recovery, repeated cleanup and restart; original account schema retained
+
+PASS test_fishing_tiers.py (10.73 seconds)
+PASS 11993 fishing/cooking shared server checks
+
+PASS test_gameplay_fixes.py (7.64 seconds)
+PASS 76 gameplay/admin rule checks; 3 town destinations
+
+PASS test_level_zones.py (39.31 seconds)
+11080 level zone checks passed; high/low averages 16.73/3.76; generated iron 152, density3 216
+
+PASS test_level_zones_http.py (21.66 seconds)
+PASS two-account cleared-cave closure, occupied-cave safeguard, last-player exit and nighttime replenishment
+PASS exported .sgworld dedicated startup; two authenticated accounts share exact zone-generated iron IDs and inherited wolf levels; depletion/prospecting timers survive checkpoint restore; client zone/resource forgery ignored
+
+PASS test_metal_progression.py (10.54 seconds)
+PASS 229 metal progression, player/mercenary gates, real iron smelting, higher-tier placeholder safety and guide assertions
+
+PASS test_naga.py (43.56 seconds)
+161 Naga Queen authoritative rule checks passed
+
+PASS test_naga_http.py (21.2 seconds)
+PASS real two-account /v1/multiplayer: same boss identity/level/phase, cooperative encounter damage, replicated pine/oak stumps and logs; client boss phase ignored; real Water Bolt and exact boss loot replicated
+
+PASS test_nagalian_restore.py (12.19 seconds)
+PASS persisted-world Queen removal/authored preservation and replicated Nagalian appearance/weapon/server skin action
+
+PASS test_nagalians.py (9.41 seconds)
+PASS 418 Nagalian generation/weapon/appearance/skinning/loot/projectile checks
+
+PASS test_player_healing_http.py (11.96 seconds)
+PASS real two-account healing HTTP: ally receives pulse, caster unchanged, exact rune cost, replicated health, invalid/range/disconnected target rejection, self-heal fallback
+
+PASS test_poplar.py (9.73 seconds)
+PASS 38 Woodcutting unlock/gather/log/XP/snow/tool/range/full-bag/resource/server checks
+
+PASS test_queen_levels.py (30.94 seconds)
+PASS actual world generation: Queen level 55 and scaled stats; no Queen without an authored spawn zone
+
+PASS test_skinning_http.py (19.63 seconds)
+PASS authenticated two-account skinning HTTP: low-level cow gives exactly one meat/one Torn Hide, reduced XP, replay/idempotence, repeated corpse rejection and shared skinned state
+
+PASS test_skinning_zones_bag.py (11.29 seconds)
+PASS 1230 skinning fallback, merged-zone geometry/local settings and Linen Bag checks
+
+PASS test_tailoring.py (11.29 seconds)
+PASS 268 Tailoring level/material/XP/station/slot/paper-doll/atomic inventory checks
+
+PASS test_tailoring_http.py (21.63 seconds)
+PASS authenticated local HTTP Tailoring: timed cast rejection, replay idempotence, dye/robe material consumption, server loom proximity, weaving/dyeing and durable inventory/XP; Linen Bag level49 rejection and level50 exact mixed-colour materials
+
+NATIVE ALPHA CLIENT
+PASS native chicken melee hits and timber Sell/Sell All authoritative menu dispatch; actual Escape menu Resume, bottom Exit to Launcher saving and returning to slots, offline-child exit; bundled-runtime online-only launcher; new-character creator and existing-character title bypass; every authored map preloaded; profile serialization and ordinary-player admin denial
+
+FIXTURE MAINTENANCE
+Older tests were corrected for the existing tent sprite mapping, explicit ore placement on a starter map without ore, editor-only Queen spawning with selected levels, Queen initial rest phase, and isolation from existing authored loot. No automatic Queen spawns reintroduced. Initial failures and rerun details retained in workspace QA logs.
+
+RELEASE VERIFICATION
+Developer: 163 Lua files compile. Alpha: 131 Lua files compile. Server Python syntax passes. Shared module parity, original uploaded art, retained historical files, archive CRC and runtime/server/editor inclusion checked by packaging.
+
+LIMITS
+Local shared-rule simulation, local real authenticated HTTP and native Windows runtime only. Native launcher requests are mocked; sales persistence uses real local HTTP. No production deployment, remote internet multiplayer or Linux/Render execution. This is a broad regression check, not a guarantee against every possible bug.

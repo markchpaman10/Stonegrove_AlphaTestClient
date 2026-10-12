@@ -1,0 +1,5 @@
+VALIDATION 0.3.63.31
+PASS 35 targeted bag eligibility, ownership, remote region/cave, camp, proximity, capacity, save and duplicate checks.
+PASS authenticated multiplayer death, logout, server restart, intact-grave refusal, ground-bag refusal, public recovery by another player, starter grant, replay, durable save and repeat restart checks.
+PASS native LOVE keeper rendering, hover instructions, automatic D-grade five-slot starter bag, empty inventory, preserved eight-item copper bank and duplicate refusal; screenshot inspected.
+PASS retained starter/Religion/fire, bag overhaul, gravestone and cave restart regression tests. Root/alpha syntax and shared-module parity verified; existing artwork retained byte-for-byte and ZIP CRC checked. No production database or saves changed.

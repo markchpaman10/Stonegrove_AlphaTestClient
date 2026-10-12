@@ -1,0 +1,10 @@
+CHANGES 0.3.63.36 — NEW MODULAR HOUSES
+
+Houses category now offers New House - Random Stories / Roof, New House - 1 Story, and New House - 2 Story. Existing house choices/maps stay available while testing this new artwork.
+Uses the uploaded Houses_sprite-0006.png at native pixel scale, with four roof choices (blue/red pitched, gray/brown triangular), two wall styles, two door/window styles, and either ground-floor interior.
+Random appearance is chosen on placement and stored with each object. Saving, loading, undo, exported/imported world packages and dedicated-server loading retain the exact roof, floors, walls, windows, door and interior. Missing variant fields use deterministic defaults, never redraw randomness.
+The player walks through the front doorway into the same-world ground floor. The facade, second floor and roof disappear while the local player is inside, revealing the chosen interior. Leaving restores the exterior. Interior floor/walls render before the player so the player remains visible.
+Editor: right-click any new house (including its roof) to toggle interior preview. Shift + right-click erases; Undo restores its saved variants. Preview state is editor-only and is not exported. Placement footprint/resource-clear highlighting matches the new ground-floor bounds.
+Walls and doorway use shared player/enemy/projectile collision rules. NPC navigation can route through the doorway rather than treating the entire interior as blocked. Procedural resources are cleared from the house/interior footprint. Existing house collision and art are retained.
+Interiors occupy ordinary world coordinates and use normal object rendering/sorting, so future furniture can use the existing editor object system. No furniture assets or upper-floor travel were added in this release.
+Includes matching developer/editor/server and alpha client builds. Preserves previous gameplay and 30-player performance work.

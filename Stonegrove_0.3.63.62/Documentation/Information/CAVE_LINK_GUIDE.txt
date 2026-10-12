@@ -1,0 +1,17 @@
+Stonegrove 0.3.63.60
+
+Mountains
+Terrain now offers Grass, Grass / Dirt Path, Grass / Water Base, Dirt, and Cave Interior mountain brushes, using the supplied 256x240 sheet. Styles can be painted alongside each other and still join automatically. Existing mountains retain the grass style.
+Use Edit Mountain Layer 1/2/3 in the Terrain palette, or [ and ], to change layers. Paint upper layers on lower mountains. Removing support also removes the tiles above it; Undo restores all affected layers. The current layer is shown in the Terrain heading. The three layers save and export together.
+Mountain interiors are walkable and participate in the regular resource and enemy placement rules, including resource/level zones, spawn zones, density and protected areas. Cliff edges remain blocked; ramps provide access.
+
+Cave doors
+Terrain includes Mountain Cave Entrance and Cave Exit to Outdoors brushes.
+Right-click a placed entrance or exit to open Cave Door Destination. Only nonempty maps appear. Choose the map, zoom with the mouse wheel, pan with middle/right mouse, and click a destination square. Apply link saves the map ID and tile coordinates on that door. Remove link restores ordinary entrance behavior; an unlinked exit waits for a destination.
+Each door is independent: place an entrance on the outdoor map and an exit on the cave map, and link both directions. Linked doors transfer directly to the authored map, like RPG Maker. Unlinked entrances continue to use the existing generated cave system. Destination selection is snapped to a 16-pixel tile center; the runtime finds a nearby safe arrival if procedural objects occupy that tile.
+Save the world and export its .sgworld package, then upload that world to the configured GitHub source and restart the matching developer server. The server still downloads its world only from GitHub.
+
+Validation
+Native LOVE editor checks passed for styles, three layers, layer limits, support removal and undo, map save/reload/export/import, filtering empty maps, destination zoom and exact tile selection. Held-click fences/ramps and single-stroke Undo remain working.
+An isolated server simulation spawned trees and monsters on mountain tops and traveled through the linked entrance to another map and back through its exit. Character-loading regressions, Lua compilation and ZIP integrity were checked.
+Documentation remains under Documentation/Changelogs and Documentation/Information. Extract into a new folder for the clean layout.
