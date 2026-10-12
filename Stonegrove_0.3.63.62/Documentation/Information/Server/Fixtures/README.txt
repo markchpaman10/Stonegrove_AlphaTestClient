@@ -1,1 +1,0 @@
-Disposable native-editor-exported input for Server/test_level_zones_http.py. Not the production world. The test rewrites a copy in its isolated test directory; it never edits this fixture, current.lua, Server/world.sgworld or production accounts.sqlite3.

@@ -1,1 +1,0 @@
-return {version=1,entries={{id='ghost',name='Ghost',editorLabel='Ghost NPC',race='Ghost',gender='male',role='Spirit',dialogue='The living still walk these roads.',behavior='Stand Still',wanderRadius=72,appearanceKey='ghost'}}}

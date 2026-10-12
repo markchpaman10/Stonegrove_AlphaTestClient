@@ -1,9 +1,0 @@
-Stonegrove 0.3.63.58
-
-Corrected mountain inside corners: the supplied center split is now sampled in the proper four quadrants, completing joins around notches and projections.
-Updated the mountain tileset to the supplied 128x80 ramp sheet.
-Level Editor > Terrain > Mountain Ramp. Place at the left tile of a straight three-tile-wide south-facing mountain edge. R mirrors the ramp. Right-click erases; Shift + right-click when an inspector is under the cursor.
-Ramps are three tiles wide and four tiles tall. Their middle passage allows access to the walkable mountain interior; other edges and cliff faces remain blocked.
-Mountain and ramp brushes preserve undo, map switching, save and shared-world export/import. Invalid ramps stop rendering and opening passage if the supporting mountain edge is removed.
-Includes previous character-loading and camera fixes, with documentation kept organized.
-Verified native editor paint/erase/undo, ramp placement and passage, mirrored rendering, map reload and world package roundtrip. Lua compilation, character-loading regression and ZIP integrity checks passed.

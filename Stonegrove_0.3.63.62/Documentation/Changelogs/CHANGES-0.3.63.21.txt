@@ -1,4 +1,0 @@
-STONEGROVE 0.3.63.22 - Slime King minion targets and Strength 99 bag capacity
-
-Slime King minions now link to their summoning King and follow its current combat target, including player threat and mercenary tank taunts. They switch when the King changes target and replace dead/disconnected targets. Boss projectiles use the same target selection. Existing unlinked summons adopt a nearby active King. Minion target links are stable string IDs without actor table references in network/save snapshots.
-Strength bag capacity now awards the final milestone at 99 instead of the unreachable level 100. Levels 10-90 retain their +1 per ten levels; Strength 99 gives +10 inventory slots to every equipped bag in total, versus +9 at 90-98. The Strength skill guide includes this milestone. This increases each bags capacity, not the number of bags equipped. Existing bag items and repeated recalculation remain safe.

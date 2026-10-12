@@ -1,2 +1,0 @@
-Stonegrove 0.3.63.55
-The title landscape camera now follows town zones and town-center markers across the displayed map, pauses at towns, and returns along the route. Generated towns are supported; small maps remain centered. Character position is unchanged. Includes the 0.3.63.54 character-loading fix.

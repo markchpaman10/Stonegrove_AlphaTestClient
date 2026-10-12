@@ -1,3 +1,0 @@
-STONEGROVE 0.3.63.22 - Inventory shellfish breaking
-
-Crab and Lobster inventory menus now show Break rather than Fillet. Break transforms the selected item into Crab Parts or Lobster Parts in the same inventory slot, using the existing broken sprite. It does not create meat or ground drops. Right-click the broken inventory item and choose Harvest for 1-5 raw meat, placed directly in inventory. Failed harvest due to full bags preserves the broken item. Existing Cooking/knife requirements and two-second processing casts remain. Empty on a loaded pot drops catches for pickup; pot placement/recovery remain unchanged. Legacy parts already on the ground remain harvestable.

@@ -1,6 +1,0 @@
-VALIDATION 0.3.63.14
-
-Native bundled-runtime alpha fixture exercised actual Escape menu mouse clicks: Resume closes the menu and keeps the selected character running; bottom Exit to Launcher closes the menu, queues the selected character save, waits for completion, refreshes slots and keeps the launcher open. The Exit action also passed while multiplayer was both busy and not ready, and the Escape overlay was visible during the disconnected/loading screen. Separate offline child exit follows normal quit. Screenshot of pause-menu layout visually inspected.
-Existing native checks passed: online-only launcher, freed-slot character creation with nonzero revision, existing-character loading/title bypass, every authored map preload, profile serialization and ordinary-account admin denial.
-Developer and alpha Lua syntax, shared module parity, original uploaded asset byte identity, ZIP CRC and server/editor + alpha runtime inclusion verified. QA databases/caches excluded.
-Limits: native save/slot requests used controlled successful mock responses. No live server deployment or human internet multiplayer session; the server rules are unchanged in this release.
