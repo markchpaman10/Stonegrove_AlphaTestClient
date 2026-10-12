@@ -1,3 +1,35 @@
+Stonegrove 0.3.63.49 - Launcher automatic client installation
+
+Added an Install latest client button that downloads and verifies the correct Alpha/developer package, stages it outside the installed client, waits for the running client to exit, replaces files with backups and reopens Stonegrove. Failure during replacement restores the previous files. Installation blocks launcher actions until handoff; download/validation failures leave the current client unchanged and allow retry. Previous helper errors are visible on subsequent startup.
+
+Added explicit package/build metadata, Windows process detection and a hidden PowerShell installation helper. Update archives must match the release version and installed distribution. SHA-256, size, required files, staged-file hashes, safe paths, duplicate paths, symlinks and extraction limits are checked. Developer updates exclude Server/account files and preserve existing authored world/item/NPC/monster/quest/event definitions. LOVE saves, credentials, settings and imported worlds are outside replacement scope.
+
+GitHub release assets: Alpha Stonegrove_VERSION.zip; developer Stonegrove_Developer_VERSION.zip. Matching .zip.sha256 sidecars are supplied, supporting repositories without a GitHub release digest and root-file fallback. Earlier clients require a one-time manual installation of .49; subsequent versions can install from the launcher.
+
+Validation: 55 Windows helper checks covering both distributions, checksum/path/build/version rejection, altered staged files, waiting for the parent process, file-lock rollback, backups and protected files. 54 metadata/handoff checks and 20 actual LOVE launcher checks across both builds. Actual Windows helper replacement and LOVE restart, plus native hidden ShellExecute handoff passed. All Lua files compile; Python syntax and unchanged artwork/gameplay/server source comparisons pass. ZIP CRC and packaged-file contents verified. GitHub download/metadata responses were simulated for update tests; the .49 assets still need to be published to the repository for live player downloads.
+
+Stonegrove automatic client updates - 0.3.63.49
+
+Install this build manually once: extract its ZIP into a normal writable folder and launch it. Builds 0.3.63.48 and earlier do not contain the installer.
+
+Publishing updates:
+1. Open https://github.com/markchpaman10/Stonegrove_AlphaTestClient/releases/new
+2. Create and publish a normal release with a four-part tag, for example v0.3.63.49. Do not mark it draft or prerelease.
+3. Upload Stonegrove_0.3.63.49.zip from the Alpha_Testers folder and its matching Stonegrove_0.3.63.49.zip.sha256. This is the player client with its Windows runtime.
+4. For developer-client updates also upload Stonegrove_Developer_0.3.63.49.zip and its matching .zip.sha256 file. Do not upload the full developer ZIP under the Alpha filename: its contents are different.
+5. Future releases use the next version in both their tag and ZIP names. The ZIP must contain main.lua and client_package.json directly at its root, not inside another folder. Use the supplied packages rather than GitHub's automatic source-code ZIP.
+
+The launcher checks before login. When a newer matching client is available, click Install latest client. It downloads in the background, verifies SHA-256 against the release asset digest (or the matching .zip.sha256 file), validates the package, closes Stonegrove, installs the files, then reopens it. If the repository has no published release, versioned ZIPs and matching checksum files at its root are also supported.
+
+Keep the checksum paired with the exact ZIP: do not edit or repack a ZIP after generating its checksum. A release without a matching ZIP cannot install. Network, verification and staging failures leave the current client unchanged and allow retry/login. Close other Stonegrove/editor windows before installation. Stop a server using the developer folder before updating that folder.
+
+Character saves, remembered login details, imported worlds and settings stay in the LOVE save folder and are not replaced. Developer updates preserve existing authored current.lua and item/npc/monster/quest/event definition files; Server files and account databases are never installed by this client updater. Server updates remain a separate manual deployment.
+
+Replaced files are backed up under the LOVE save folder's client-updates/job-* /backup directory. Failed file replacements roll back before reopening the previous client. Backups are retained for recovery; completed staging ZIPs and extracted temporary files are removed. After confirming the new client works, old completed job folders can be removed manually. A power interruption may require restoring that job's backup; no updater can guarantee uninterrupted disk writes.
+
+Windows automatic installation requires PowerShell and an extracted writable client folder. No administrator access is required.
+
+Previous notes:
 Stonegrove 0.3.63.48 - Bone stacks, tool equipment and world-state repair
 
 Bone stacking: the previous physical stacks stayed separate because each credited kill carried a unique boneToken. Piles and separated bones now stack to 15 when type, original kill owner, blessing state and substantive item metadata match. Each stack retains a per-token quantity map; different players' kill credit stays separate. Bought/uncredited bones cannot acquire credited-kill Religion eligibility. Legacy single-token items remain supported. Inventory stacking, drag merges, bank deposits, partial withdrawals, shop transfers and save serialization preserve these per-kill quantities.

@@ -1,6 +1,6 @@
 local Logger = {}
 Logger.__index = Logger
-Logger.VERSION="Stonegrove 0.3.63.48 ONLINE/OFFLINE"
+Logger.VERSION="Stonegrove 0.3.63.49 ONLINE/OFFLINE"
 
 local QUIET_EVENTS = {
   KEY_PRESSED=true, KEY_RELEASED=true, TEXT_INPUT=true,

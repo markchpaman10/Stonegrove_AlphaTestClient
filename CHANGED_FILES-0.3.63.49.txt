@@ -1,0 +1,11 @@
+AUTO_UPDATE_GUIDE.txt
+CHANGES-0.3.63.49.txt
+client_package.json
+README.txt
+START_HERE.txt
+Update_Client.ps1
+game/client_build.lua
+game/client_installer.lua
+game/client_updates.lua
+game/launcher.lua
+game/logger.lua

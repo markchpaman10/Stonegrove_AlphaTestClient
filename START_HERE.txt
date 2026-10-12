@@ -1,2 +1,2 @@
-STONEGROVE ALPHA CLIENT 0.3.63.48
-Extract entire ZIP and run Play_Stonegrove.bat. Use matching developer server. See CHANGES-0.3.63.48.txt and VALIDATION-0.3.63.48.txt.
+STONEGROVE ALPHA CLIENT 0.3.63.49
+Extract entire ZIP and run Play_Stonegrove.bat. Use matching developer server. See CHANGES-0.3.63.49.txt and VALIDATION-0.3.63.49.txt.
