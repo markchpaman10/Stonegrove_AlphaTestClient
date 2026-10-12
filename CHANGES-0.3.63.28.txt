@@ -1,3 +1,0 @@
-STONEGROVE 0.3.63.28 - Saved cave server restart fix
-
-Fixed server startup crashing with caveInstances nil when restoring saved cave rooms. Cave initialization now creates the runtime cache even when saved entrances already exist, preserving their IDs, seeds and contents. Restore initializes cave state before entrance cleanup. Existing worlds, cave graves and protected inventory remain intact; no database reset is required. All previous content is preserved.

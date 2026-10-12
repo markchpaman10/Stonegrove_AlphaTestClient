@@ -1,4 +1,0 @@
-VALIDATION 0.3.63.29
-PASS 113 targeted rune checks: every spell with every grade, offensive damage and healing tick values, ungraded migration, mixed-grade storage and highest-grade selection, save/profile metadata, partial/full deposit, legacy blessed Cave Snake Fang storage/withdrawal, UI withdrawal, insufficient space atomicity, failed casts, insufficient stamina, preserved runes and independent melee healing.
-PASS 24 multiplayer shared-server checks for all four grades: real exchange spell actions, graded Rune Bag consumption, projectile damage and returned Healing Pulse quality state.
-PASS 892 existing quality checks across 179 recipes, equipment, stacks, bank, food and potions. PASS Lua syntax in both builds, module parity, retained artwork and ZIP CRC. Tests used isolated fixtures; no production data was changed.

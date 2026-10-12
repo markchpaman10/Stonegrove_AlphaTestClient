@@ -1,9 +1,0 @@
-VALIDATION 0.3.63.26
-PASS 2299 shared-engine checks including all 256 eight-slot occupancy patterns (2048 serialization assertions), recipe registration, exact material consumption, quality, matching black cloth, station/skill restrictions, Use-on mappings, stack caps, enemy construction and actual damage, unrestricted level-1 player/merc equip rules, correct combat bonuses, no Death robes recipes/vendor sale, NPC and monster editor validation.
-PASS 874 quality regression checks across 175 implemented recipes.
-PASS 425 existing advanced equipment/recipe/art/poison/bow/atomic-inventory checks.
-PASS 49 existing authenticated gravestone death/recovery/privacy/persistence/replay checks after the serialization fix.
-PASS authenticated HTTP timed black crafting, material consumption, quality and replay checks, plus preserved advanced camp/bag HTTP suite.
-PASS native LOVE sprite loading, 32 Skeleton/Ghost poses, four equipped player directions, Ghost NPC rendering, actual level-1 UI equip and help/tooltip with no level gate. Render inspected visually.
-PASS both distributions Lua syntax, shared game module parity, previous artwork preservation, all ten new PNGs byte-identical to uploads and both ZIP CRC checks.
-Tests used isolated QA accounts/data; no hosted deployment or production account database changed. Level-40 stats and level-10 enemy defaults are explicit balance choices based on existing progression, since no exact stats or enemy levels were supplied.

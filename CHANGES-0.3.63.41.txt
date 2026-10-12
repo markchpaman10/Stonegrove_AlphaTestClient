@@ -1,6 +1,0 @@
-Stonegrove 0.3.63.41 — Guard kills do not produce bones
-
-Town guard killing blows do not produce regular or cursed bone piles, including Nagalians. This applies even if a player damaged the enemy earlier. The death is marked as handled so later death sweeps cannot create a pile or private bone claim.
-Player and companion kills retain their existing bone rules. Respawn clears the handled marker for the next life. Other loot and the house editor Ctrl + right-click shortcut are preserved.
-
-Validation: server simulation exercises real town guard lethal hits across normal/cursed enemy families, player-assisted guard kills, repeated/deferred drop attempts, respawn, and player-owned delayed drops. Existing cursed enemy, bone separation, kill ownership, purchases, burial, blessing, hallowed ground, persistence and rollback checks also pass. All Lua and server Python syntax checks and ZIP CRC/content checks pass; artwork is unchanged.

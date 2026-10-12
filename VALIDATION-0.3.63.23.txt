@@ -1,7 +1,0 @@
-PASS 611 bag-system checks: all six types, four grades, all four interchangeable slots, level/Strength formulas and99 gate, 76 maximum slots, starter removal with contents, safe replacement, failed swap rollback, legacy overflow and full-bank overflow, prices, six actual recipes/skill XP and configurable grade odds.
-PASS 849 quality checks across170 implemented recipes, including inventory/bank/merchant stacks, weapons, armor, food, potions and direct item-use crafting.
-PASS19 Slime King targeting/bag regression checks and75 content/fishing/camp/bonfire checks.
-PASS authenticated isolated HTTP: forged capacity/locked fourth-slot rejection; all six bag recipes at10/20/30, below-level rejection, exact ingredient consumption, correct XP, timed cast and replay protection; all advanced recipes and existing tailoring/station proximity; legacy save migration with26 rated tools preserved,7 overflow bank items, persistence and second login.
-PASS native LOVE QA: exact six atlas quads, icons, actual equipped-bag hover, fourth-slot save/load, dynamic inventory window and Combined Bags option click; screenshots visually inspected.
-PASS root/alpha Lua syntax, shared module byte parity, original uploaded artwork bytes and both ZIP CRC checks.
-Verification limits: used isolated QA accounts/saves and local server/native client; did not modify or test the user's live production accounts, hosted deployment, or every possible resolution/third-party authored world.

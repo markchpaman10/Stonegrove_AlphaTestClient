@@ -1,5 +1,0 @@
-VALIDATION 0.3.63.32
-PASS 810 targeted checks across seven rune materials, four grades and both blessing states: stack merging, separate grades/blessings, one/multiple/all withdrawals, exact quantity conservation, profile persistence, full-bank/full-inventory rollback, container state and all bag price/capacity tooltips.
-PASS authenticated multiplayer graded bank save/restart and Bag Keeper recovery tests.
-PASS native LOVE shop tooltip visually inspected showing bag grade, capacity, stock, buy and sell prices; 11 graded blessed rune materials remain banked after withdrawing one of 12.
-PASS retained 113 rune quality checks, 611 bag checks, 425 advanced gear checks, 892 quality checks across 179 recipes and 33 authenticated Bag Keeper regression checks. Both source trees compile, shared modules match, prior artwork remains byte-identical, both ZIPs pass CRC validation. No production saves or databases changed.
